@@ -1,0 +1,50 @@
+spring.application.name: camundaBatch
+server.port: 10100
+camunda:
+  bpm:
+    application:
+      isDeleteUponUndeploy: false
+      isScanForProcessDefinitions: false
+      isDeployChangedOnly: true
+      isResumePreviousVersions: true
+      resumePreviousBy: a value
+    job-execution:
+      enabled: true
+    metrics:
+      enabled: false
+      db-reporter-activate: false
+    generic-properties:
+      properties:
+        batchJobsPerSeed: 5
+        invocationsPerBatchJob: 4
+    database:
+      type: h2
+      schema-update: true
+      jdbc-batch-processing: true
+    history-level: full
+
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      jdbc:
+        batch_size: 10
+      batch_versioned_data: true
+      order_inserts: true
+      order_updates: true
+  datasource:
+    driverClassName: org.h2.Driver
+    primary:
+      hikari:
+        pool-name: camunda-pool
+        maximum-pool-size: 50
+        jdbc-url: jdbc:h2:mem:batch-camunda 
+#        jdbc-url: jdbc:postgresql://localhost:5432/batch-camunda?reWriteBatchedInserts=true
+#        username: postgres
+#        password: c4ncerberos
+#   url: jdbc:postgresql://localhost:5432/batch-camunda?reWriteBatchedInserts=true
+#    username: postgres
+#    password: c4ncerberos
+
+#camunda.bpm.auto-deployment-enabled: false
+
